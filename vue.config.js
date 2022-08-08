@@ -30,12 +30,20 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://ihrm-java.itheima.net/', // 要代理的服务器地址
+        changOrigin: true
+
+      }
+    },
     port: port,
     open: true,
     overlay: {
       warnings: false,
       errors: true
     }
+
     // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
